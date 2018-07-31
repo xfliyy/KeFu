@@ -12,6 +12,7 @@ import com.m7.imkfsdk.R;
 import com.m7.imkfsdk.chat.ChatActivity;
 import com.m7.imkfsdk.chat.holder.BaseHolder;
 import com.m7.imkfsdk.chat.holder.RichViewHolder;
+import com.m7.imkfsdk.utils.ImageLoadUtils;
 import com.moor.imkf.model.entity.CardInfo;
 import com.moor.imkf.model.entity.FromToMessage;
 import com.moor.imkf.model.parser.HttpParser;
@@ -48,13 +49,7 @@ public class RichTxChatBox extends BaseChatRow {
                 }else{
                     holder.getImageView().setVisibility(View.VISIBLE);
                 }
-
-                Glide.with(context).load(ci.icon)
-                        .centerCrop()
-                        .crossFade()
-                        .placeholder(R.drawable.kf_pic_thumb_bg)
-                        .error(R.drawable.kf_image_download_fail_icon)
-                        .into(holder.getImageView());
+                ImageLoadUtils.load(context,ci.icon,R.drawable.kf_pic_thumb_bg,R.drawable.kf_image_download_fail_icon,holder.getImageView());
                 holder.getKf_chat_rich_lin().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

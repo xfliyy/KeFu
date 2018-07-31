@@ -8,14 +8,14 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.m7.imkfsdk.R;
 import com.m7.imkfsdk.chat.ChatActivity;
 import com.m7.imkfsdk.chat.ImageViewLookActivity;
 import com.m7.imkfsdk.chat.holder.BaseHolder;
 import com.m7.imkfsdk.chat.holder.ImageViewHolder;
+import com.m7.imkfsdk.utils.ImageLoadUtils;
 import com.m7.imkfsdk.utils.ImageUtils;
 import com.moor.imkf.model.entity.FromToMessage;
 
@@ -39,18 +39,14 @@ public class ImageTxChatRow extends BaseChatRow {
         final ImageViewHolder holder = (ImageViewHolder) baseHolder;
         final FromToMessage message = detail;
         if(message != null) {
-            Glide.with(context).load(message.filePath)
-                    .asBitmap()
-                    .placeholder(R.drawable.pic_thumb_bg)
-                    .error(R.drawable.image_download_fail_icon)
-                    .into(new SimpleTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                            final Bitmap bitmap_bg = BitmapFactory.decodeResource(context.getResources(), R.drawable.kf_chatto_bg_normal);
-                            Bitmap newBitmap = ImageUtils.getRoundCornerImage(bitmap_bg, resource);
-                            holder.getImageView().setImageBitmap(newBitmap);
-                        }
-                    });
+            ImageLoadUtils.load(context, message.filePath, R.drawable.pic_thumb_bg, R.drawable.image_download_fail_icon, new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                    final Bitmap bitmap_bg = BitmapFactory.decodeResource(context.getResources(), R.drawable.kf_chatto_bg_normal);
+                    Bitmap newBitmap = ImageUtils.getRoundCornerImage(bitmap_bg, resource);
+                    holder.getImageView().setImageBitmap(newBitmap);
+                }
+            });
             holder.getImageView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

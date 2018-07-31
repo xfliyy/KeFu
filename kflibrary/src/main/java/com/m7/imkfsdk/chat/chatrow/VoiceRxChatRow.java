@@ -20,6 +20,7 @@ import java.util.UUID;
 
 /**
  * Created by longwei on 2016/3/9.
+ * 客服发送语音
  */
 public class VoiceRxChatRow extends BaseChatRow {
 

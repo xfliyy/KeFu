@@ -13,6 +13,7 @@ import com.moor.imkf.model.entity.FromToMessage;
 
 /**
  * Created by longwei on 2016/3/9.
+ * 用户发送语音item
  */
 public class VoiceTxChatRow extends BaseChatRow {
 

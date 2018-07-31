@@ -1,6 +1,7 @@
 package com.m7.imkfsdk.chat.chatrow;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.View;
 
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide;
 import com.m7.imkfsdk.R;
 import com.m7.imkfsdk.chat.holder.BaseHolder;
 import com.m7.imkfsdk.chat.holder.ViewHolderTag;
+import com.m7.imkfsdk.utils.ImageLoadUtils;
 import com.moor.imkf.model.entity.FromToMessage;
 
 /**
@@ -92,18 +94,25 @@ public abstract class BaseChatRow implements IChatRow {
         String imgPath = detail.im_icon;
         if (baseHolder.getChattingAvatar() != null) {
             if ("1".equals(detail.userType)) {
+                //客服
 
                 if (detail.showHtml != null && detail.showHtml) {
                     //机器人头像
                     Glide.with(context).load(R.drawable.kf_head_default_robot).into(baseHolder.getChattingAvatar());
                 } else if (imgPath != null && !"".equals(imgPath)) {
                     //客服头像
-                    Glide.with(context).load(imgPath + "?imageView2/0/w/100/h/100")
-                            .placeholder(R.drawable.kf_head_default_local)
-                            .into(baseHolder.getChattingAvatar());
-                }else{
+                    ImageLoadUtils.load(context,imgPath + "?imageView2/0/w/100/h/100",R.drawable.kf_head_default_local,R.drawable.kf_head_default_local,baseHolder.getChattingAvatar());
+                } else {
                     baseHolder.getChattingAvatar().setImageResource(R.drawable.kf_head_default_local);
                 }
+            } else {
+                //用户
+                if (!TextUtils.isEmpty(imgPath)) {
+                    ImageLoadUtils.load(context,imgPath ,R.drawable.user_head_default_local,R.drawable.user_head_default_local,baseHolder.getChattingAvatar());
+                } else {
+                    baseHolder.getChattingAvatar().setImageResource(R.drawable.user_head_default_local);
+                }
+
             }
 
         }

@@ -121,7 +121,7 @@ public class KfStartHelper {
         for (int i = 0; i < entrances.size(); i++) {
             items[i] = entrances.get(i).getName();
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity, AlertDialog.BUTTON_POSITIVE);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity, R.style.Theme_AppCompat_Light_Dialog);
         builder.setTitle("选择日程");
         // 设置列表显示，注意设置了列表显示就不要设置builder.setMessage()了，否则列表不起作用。
         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -188,7 +188,7 @@ public class KfStartHelper {
         for (int i = 0; i < peers.size(); i++) {
             items[i] = peers.get(i).getName();
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity, AlertDialog.BUTTON_POSITIVE);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity, R.style.Theme_AppCompat_Light_Dialog);
         builder.setTitle("选择技能组");
         // 设置列表显示，注意设置了列表显示就不要设置builder.setMessage()了，否则列表不起作用。
         builder.setItems(items, new DialogInterface.OnClickListener() {

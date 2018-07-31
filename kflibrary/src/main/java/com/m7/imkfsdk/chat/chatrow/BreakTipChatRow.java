@@ -15,6 +15,7 @@ import com.moor.imkf.utils.NullUtil;
 
 /**
  * Created by longwei on 2017/12/11.
+ * 客服item
  */
 
 public class BreakTipChatRow extends BaseChatRow{

@@ -12,6 +12,7 @@ import com.m7.imkfsdk.MoorWebCenter;
 import com.m7.imkfsdk.R;
 import com.m7.imkfsdk.chat.holder.BaseHolder;
 import com.m7.imkfsdk.chat.holder.RichViewHolder;
+import com.m7.imkfsdk.utils.ImageLoadUtils;
 import com.moor.imkf.model.entity.FromToMessage;
 
 /**
@@ -49,13 +50,7 @@ public class RichRxChatBow extends BaseChatRow {
                 }else{
                     holder.getImageView().setVisibility(View.VISIBLE);
                 }
-
-                Glide.with(context).load(message.richTextPicUrl+"?imageView2/0/w/200/h/140")
-                        .centerCrop()
-                        .crossFade()
-                        .placeholder(R.drawable.kf_pic_thumb_bg)
-                        .error(R.drawable.kf_image_download_fail_icon)
-                        .into(holder.getImageView());
+                ImageLoadUtils.load(context,message.richTextPicUrl+"?imageView2/0/w/200/h/140",R.drawable.kf_pic_thumb_bg,R.drawable.kf_image_download_fail_icon,holder.getImageView());
                 holder.getKf_chat_rich_lin().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

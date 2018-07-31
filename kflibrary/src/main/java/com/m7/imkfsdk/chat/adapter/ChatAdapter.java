@@ -144,8 +144,6 @@ public class ChatAdapter extends BaseAdapter {
             baseHolder.getChattingTime().setPadding(6, 2, 6, 2);
         } else {
             baseHolder.getChattingTime().setVisibility(View.GONE);
-            baseHolder.getChattingTime().setShadowLayer(0.0F, 0.0F, 0.0F, 0);
-            baseHolder.getChattingTime().setBackgroundResource(0);
         }
         //填充消息的数据
         chatRow.buildChattingBaseData(context, baseHolder, message, position);

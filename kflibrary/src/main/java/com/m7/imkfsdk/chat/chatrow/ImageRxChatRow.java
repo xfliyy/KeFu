@@ -11,6 +11,7 @@ import com.m7.imkfsdk.R;
 import com.m7.imkfsdk.chat.ImageViewLookActivity;
 import com.m7.imkfsdk.chat.holder.BaseHolder;
 import com.m7.imkfsdk.chat.holder.ImageViewHolder;
+import com.m7.imkfsdk.utils.ImageLoadUtils;
 import com.moor.imkf.model.entity.FromToMessage;
 
 /**
@@ -38,13 +39,7 @@ public class ImageRxChatRow extends BaseChatRow {
             }else {
                 holder.getWithdrawTextView().setVisibility(View.GONE);
                 holder.getContainer().setVisibility(View.VISIBLE);
-                Glide.with(context).load(message.message+"?imageView2/0/w/200/h/140")
-                        .centerCrop()
-                        .crossFade()
-                        .placeholder(R.drawable.kf_pic_thumb_bg)
-                        .error(R.drawable.kf_image_download_fail_icon)
-                        .into(holder.getImageView());
-
+                ImageLoadUtils.load(context,message.message+"?imageView2/0/w/200/h/140",R.drawable.kf_pic_thumb_bg,R.drawable.kf_image_download_fail_icon,holder.getImageView());
                 holder.getImageView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

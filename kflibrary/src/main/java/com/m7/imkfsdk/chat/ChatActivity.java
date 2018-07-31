@@ -98,7 +98,8 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
     private ChatListView mChatList;
     private Button mChatSend, mChatMore, mChatSetModeVoice,
             mChatSetModeKeyboard;
-    TextView chat_tv_back, chat_tv_convert;
+    TextView chat_tv_convert;
+    View chat_tv_back;
     private EditText mChatInput;
     private ChatAdapter chatAdapter;
     private RelativeLayout mChatEdittextLayout,
@@ -162,7 +163,7 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
     private String schedule_id = "";
     private String schedule_topeer = "";
     private String processType = "";
-    private String titleName = "";
+    private String titleName = "墨子智能客服";
     private String entranceId = "";
     private Handler handler = new Handler() {
 
@@ -458,8 +459,8 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
             beginScheduleSession(scheduleId, processId, currentNodeId, entranceId);
         }
         //设置全局配置
-        setGlobalConfig();
-        mOtherName.setText("墨子智能客服");
+        //setGlobalConfig();
+
     }
 
     private void initPermission() {
@@ -680,7 +681,7 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         mChatSend = (Button) this.findViewById(R.id.chat_send);
-        chat_tv_back = (TextView) this.findViewById(R.id.chat_tv_back);
+        chat_tv_back = this.findViewById(R.id.chat_tv_back);
         mRecorderButton = (AudioRecorderButton) findViewById(R.id.chat_press_to_speak);
         mRecorderButton.setRecordFinishListener(this);
         mChatInput = (EditText) this.findViewById(R.id.chat_input);
@@ -710,7 +711,8 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
         }
 
         mOtherName = (TextView) this.findViewById(R.id.other_name);
-        mChatInput.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+        /*mChatInput.setOnFocusChangeListener(new OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -739,7 +741,7 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                 mChatMoreContainer.setVisibility(View.GONE);
             }
         });
-
+*/
         // 监听文字框
         mChatInput.addTextChangedListener(new TextWatcher() {
 
@@ -796,11 +798,11 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                 getString(R.string.chat_img));
         ChatMore chatMore3 = new ChatMore(3, R.drawable.kf_icon_chat_file + "",
                 getString(R.string.chat_file));
-        ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
-                getString(R.string.chat_evaluate));
+/*        ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
+                getString(R.string.chat_evaluate));*/
         moreList.add(chatMore2);
         moreList.add(chatMore3);
-        moreList.add(chatMore4);
+//        moreList.add(chatMore4);
         int pageCount = (int) Math.ceil(moreList.size() / 8 + 0.1);
         for (int i = 0; i < pageCount; i++) {
             moreLists.add(getData(i));
@@ -1432,7 +1434,6 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
 
                 }
 
-                ;
             }.start();
         }
     }
@@ -1543,11 +1544,11 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                             getString(R.string.chat_img));
                     ChatMore chatMore3 = new ChatMore(3, R.drawable.kf_icon_chat_file + "",
                             getString(R.string.chat_file));
-                    ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
-                            getString(R.string.chat_evaluate));
+/*                    ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
+                            getString(R.string.chat_evaluate));*/
                     moreList.add(chatMore2);
                     moreList.add(chatMore3);
-                    moreList.add(chatMore4);
+//                    moreList.add(chatMore4);
                     moreLists.clear();
                     int pageCount = (int) Math.ceil(moreList.size() / 8 + 0.1);
                     for (int i = 0; i < pageCount; i++) {
@@ -1598,11 +1599,11 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                             getString(R.string.chat_img));
                     ChatMore chatMore3 = new ChatMore(3, R.drawable.kf_icon_chat_file + "",
                             getString(R.string.chat_file));
-                    ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
-                            getString(R.string.chat_evaluate));
+/*                    ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
+                            getString(R.string.chat_evaluate));*/
                     moreList.add(chatMore2);
                     moreList.add(chatMore3);
-                    moreList.add(chatMore4);
+//                    moreList.add(chatMore4);
 
                     moreLists.clear();
                     int pageCount = (int) Math.ceil(moreList.size() / 8 + 0.1);

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+import com.m7.imkfsdk.R;
+
 /**
  * 基础Activity
  *
@@ -17,6 +19,7 @@ public class MyBaseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		getDisplay();
+		setTheme(R.style.BaseAppTheme);
 		super.onCreate(savedInstanceState);
 	}
 
@@ -34,5 +37,6 @@ public class MyBaseActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onResume();
 	}
+
 
 }

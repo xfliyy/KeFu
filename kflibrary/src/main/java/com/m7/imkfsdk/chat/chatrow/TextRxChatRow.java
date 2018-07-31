@@ -28,6 +28,7 @@ import com.m7.imkfsdk.chat.holder.BaseHolder;
 import com.m7.imkfsdk.chat.holder.TextViewHolder;
 import com.m7.imkfsdk.utils.DensityUtil;
 import com.m7.imkfsdk.utils.FaceConversionUtil;
+import com.m7.imkfsdk.utils.ImageLoadUtils;
 import com.moor.imkf.IMChatManager;
 import com.moor.imkf.db.dao.MessageDao;
 import com.moor.imkf.model.entity.FromToMessage;
@@ -105,14 +106,7 @@ public class TextRxChatRow extends BaseChatRow {
                             iv.setAdjustViewBounds(false);
 
                             final String imgUrl = data.get(i);
-
-                            Glide.with(context).load(imgUrl + "?imageView2/0/w/200/h/140")
-                                    .centerCrop()
-                                    .crossFade()
-                                    .placeholder(R.drawable.kf_pic_thumb_bg)
-                                    .error(R.drawable.kf_image_download_fail_icon)
-                                    .into(iv);
-
+                            ImageLoadUtils.load(context,imgUrl + "?imageView2/0/w/200/h/140",R.drawable.kf_pic_thumb_bg,R.drawable.kf_image_download_fail_icon,iv);
                             iv.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

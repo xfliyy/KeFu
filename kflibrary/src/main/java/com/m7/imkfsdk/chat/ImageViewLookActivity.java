@@ -8,6 +8,7 @@ import android.view.Window;
 
 import com.bumptech.glide.Glide;
 import com.m7.imkfsdk.R;
+import com.m7.imkfsdk.utils.ImageLoadUtils;
 import com.m7.imkfsdk.view.TouchImageView;
 
 /**
@@ -27,12 +28,9 @@ public class ImageViewLookActivity extends Activity {
         Intent intent = getIntent();
         final String imgPath = intent.getStringExtra("imagePath");
 
-        if(imgPath != null && !"".equals(imgPath)) {
-            Glide.with(this).load(imgPath)
-                    .placeholder(R.drawable.kf_pic_thumb_bg)
-                    .error(R.drawable.kf_image_download_fail_icon)
-                    .into(touchImageView);
-        }else {
+        if (imgPath != null && !"".equals(imgPath)) {
+            ImageLoadUtils.load(this, imgPath, R.drawable.kf_pic_thumb_bg, R.drawable.kf_image_download_fail_icon, touchImageView);
+        } else {
             finish();
         }
 

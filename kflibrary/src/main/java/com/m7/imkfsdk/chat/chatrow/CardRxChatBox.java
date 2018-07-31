@@ -13,12 +13,14 @@ import com.m7.imkfsdk.chat.ChatActivity;
 import com.m7.imkfsdk.chat.holder.BaseHolder;
 import com.m7.imkfsdk.chat.holder.CardViewHolder;
 import com.m7.imkfsdk.chat.holder.ViewHolderTag;
+import com.m7.imkfsdk.utils.ImageLoadUtils;
 import com.moor.imkf.model.entity.CardInfo;
 import com.moor.imkf.model.entity.FromToMessage;
 import com.moor.imkf.model.parser.HttpParser;
 
 /**
- * Created by pangw on 2018/6/25.
+ * Created by pangw on 2018/6/25.\
+ * 机器人item
  */
 
 public class CardRxChatBox extends BaseChatRow {
@@ -39,12 +41,7 @@ public class CardRxChatBox extends BaseChatRow {
 
             final CardInfo cardInfo = HttpParser.getCardInfo(detail.cardInfo);
 
-            Glide.with(context).load(cardInfo.icon)
-                    .centerCrop()
-                    .crossFade()
-                    .placeholder(R.drawable.kf_pic_thumb_bg)
-                    .error(R.drawable.kf_image_download_fail_icon)
-                    .into(holder.getIcon());
+            ImageLoadUtils.load(context,cardInfo.icon,R.drawable.kf_pic_thumb_bg,R.drawable.kf_image_download_fail_icon,holder.getIcon());
 
             holder.getMame().setText(cardInfo.name);
 

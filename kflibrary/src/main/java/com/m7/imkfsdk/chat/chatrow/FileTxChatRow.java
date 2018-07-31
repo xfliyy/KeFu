@@ -18,6 +18,7 @@ import java.io.File;
 
 /**
  * Created by longwei on 2016/3/10.
+ * 用户发送文件
  */
 public class FileTxChatRow extends BaseChatRow {
 

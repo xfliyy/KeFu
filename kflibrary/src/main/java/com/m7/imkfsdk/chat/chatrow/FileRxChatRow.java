@@ -20,6 +20,7 @@ import java.io.File;
 
 /**
  * Created by longwei on 2016/3/10.
+ * 客服发送文件item
  */
 public class FileRxChatRow extends BaseChatRow {
 
