@@ -33,7 +33,6 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -155,6 +154,7 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
     private static final int HANDLER_LEAVEMSG = 0x1100;
     private static final int HANDLER_WRITING = 0x1200;
     private static final int HANDLER_NO_WRITING = 0x1300;
+    private static final int HANDLER_NOT_PERMISSION = 0x1400;
     private boolean isRobot = false;
     private String type = "";
     private String scheduleId = "";
@@ -251,6 +251,12 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                 openInvestigateDialog();
             } else if (getString(R.string.chat_file).equals(msg.obj)) {
                 openFile();
+            }
+
+            if (msg.what == HANDLER_NOT_PERMISSION) {
+                //没有权限
+                IMChatManager.getInstance().quitSDk();
+                finish();
             }
         }
     };
@@ -464,18 +470,17 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
     }
 
     private void initPermission() {
-        if (PermissionUtils.hasAlwaysDeniedPermission(this, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            PermissionUtils.requestPermissions(this, 0x11, new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionUtils.OnPermissionListener() {
-                @Override
-                public void onPermissionGranted() {
-                }
+        PermissionUtils.requestPermissions(this, 0x11, new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionUtils.OnPermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+            }
 
-                @Override
-                public void onPermissionDenied(String[] deniedPermissions) {
-                    Toast.makeText(ChatActivity.this, R.string.notpermession, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+            @Override
+            public void onPermissionDenied(String[] deniedPermissions) {
+                Toast.makeText(ChatActivity.this, R.string.notpermession, Toast.LENGTH_SHORT).show();
+                handler.sendEmptyMessageDelayed(HANDLER_NOT_PERMISSION, 2000);
+            }
+        });
     }
 
     Timer break_timer;

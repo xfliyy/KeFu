@@ -19,8 +19,8 @@ public class MyBaseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		getDisplay();
-		setTheme(R.style.BaseAppTheme);
 		super.onCreate(savedInstanceState);
+		setTheme(R.style.KFAppTheme);
 	}
 
 	private void getDisplay() {

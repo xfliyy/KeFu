@@ -167,6 +167,10 @@ public class FaceConversionUtil {
 		if (data == null) {
 			return;
 		}
+		emojis.clear();
+		emojiLists.clear();
+		emojiMap.clear();
+		System.out.println("emojis"+emojis.size());
 		ChatEmoji emojEentry;
 		try {
 			for (String str : data) {
@@ -185,6 +189,7 @@ public class FaceConversionUtil {
 					emojis.add(emojEentry);
 				}
 			}
+			System.out.println("emojis"+emojis.size());
 			int pageCount = (int)Math.ceil(emojis.size() / 20);
 
 			for (int i = 0; i < pageCount; i++) {

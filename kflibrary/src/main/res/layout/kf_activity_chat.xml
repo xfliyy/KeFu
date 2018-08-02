@@ -17,12 +17,10 @@
         <ImageView
             android:id="@+id/chat_tv_back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/iv_white_back"
-            />
+            android:layout_height="match_parent"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/iv_white_back"/>
 
         <TextView
             android:id="@+id/other_name"
@@ -64,10 +62,12 @@
             android:id="@+id/rl_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="#ffffff"
             android:gravity="center_vertical"
+            android:minHeight="49dp"
             android:orientation="horizontal"
-            android:paddingTop="4dp">
+            >
 
             <Button
                 android:id="@+id/chat_set_mode_voice"
@@ -89,16 +89,15 @@
                 android:id="@+id/chat_press_to_speak"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="33dp"
-                android:layout_marginBottom="6dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/kf_btn_recorder_normal"
                 android:gravity="center"
                 android:text="@string/recorder_normal"
-                android:textColor="#727272"
+                android:textColor="#666666"
                 android:visibility="gone">
 
 
@@ -108,15 +107,13 @@
                 android:id="@+id/chat_edittext_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="19dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_input"
-                android:gravity="bottom">
+                >
 
                 <EditText
-                    android:textCursorDrawable="@drawable/cursor"
                     android:id="@+id/chat_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,6 +125,7 @@
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:paddingTop="3dp"
+                    android:textCursorDrawable="@drawable/cursor"
                     android:textSize="16sp"/>
 
                 <ImageView
