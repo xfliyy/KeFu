@@ -70,6 +70,11 @@ public class KfStartHelper {
         initSdkChat("com.m7.imkf.KEFU_NEW_MSG", accessId, userName, userId);
     }
 
+    /**
+     * 设置用户头像
+     *
+     * @param avatar
+     */
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
@@ -78,6 +83,11 @@ public class KfStartHelper {
         return guestbookName;
     }
 
+    /**
+     * 设置留言名字
+     *
+     * @param guestbookName
+     */
     public static void setGuestbookName(String guestbookName) {
         KfStartHelper.guestbookName = guestbookName;
     }
@@ -86,6 +96,11 @@ public class KfStartHelper {
         return guestbookMobile;
     }
 
+    /**
+     * 设置留言电话
+     *
+     * @param guestbookMobile
+     */
     public static void setGuestbookMobile(String guestbookMobile) {
         KfStartHelper.guestbookMobile = guestbookMobile;
     }

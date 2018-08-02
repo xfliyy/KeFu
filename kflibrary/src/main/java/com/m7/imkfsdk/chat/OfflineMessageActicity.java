@@ -83,6 +83,11 @@ public class OfflineMessageActicity extends MyBaseActivity {
                             } else if ("联系方式".equals(leaveMsgField.name)) {
                                 erp_field_single_et_value.setText(KfStartHelper.getGuestbookMobile());
                             }
+                            if (leaveMsgField.required) {
+                                erp_field_single_et_value.setHint("必填");
+                            } else {
+                                erp_field_single_et_value.setHint("选填");
+                            }
                             offline_ll_custom_field.addView(singleView);
                         }
                     }
