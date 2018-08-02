@@ -67,7 +67,7 @@ public class KfStartHelper {
 
     public void initSdkChat(String accessId, String userName,
                             String userId) {
-        initSdkChat("com.m7.imkf.KEFU_NEW_MSG", accessId, userName, userId);
+        initSdkChat("com.mozi.smart.KEFU_NEW_MSG", accessId, userName, userId);
     }
 
     /**

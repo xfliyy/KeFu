@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 KfStartHelper helper = new KfStartHelper(MainActivity.this);
-                helper.setAvatar("http://img.zcool.cn/community/0117e2571b8b246ac72538120dd8a4.jpg@1280w_1l_2o_100sh.jpg");
-                helper.initSdkChat( "39941890-8a6f-11e8-a09b-3399d2002bb6", "测试_胥芳理", "xfliyy");
+                helper.initSdkChat("", "", "");
             }
         });
     }
+
     /**
      * 语言切换
      * 中文 language：""
