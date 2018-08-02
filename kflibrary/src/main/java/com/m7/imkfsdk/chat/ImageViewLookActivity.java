@@ -14,7 +14,7 @@ import com.m7.imkfsdk.view.TouchImageView;
 /**
  * Created by long on 2015/7/3.
  */
-public class ImageViewLookActivity extends Activity {
+public class ImageViewLookActivity extends MyBaseActivity {
 
     private TouchImageView touchImageView;
 

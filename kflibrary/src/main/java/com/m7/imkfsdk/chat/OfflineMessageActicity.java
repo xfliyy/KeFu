@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.m7.imkfsdk.KfStartHelper;
 import com.m7.imkfsdk.R;
 import com.moor.imkf.IMChatManager;
 import com.moor.imkf.OnLeaveMsgConfigListener;
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * Created by longwei on 16/8/15.
  */
-public class OfflineMessageActicity extends Activity{
+public class OfflineMessageActicity extends MyBaseActivity {
     EditText id_et_content;
     Button btn_submit;
     TextView back;
@@ -34,6 +35,7 @@ public class OfflineMessageActicity extends Activity{
 
     private LinearLayout offline_ll_custom_field;
     List<LeaveMsgField> lmfList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,28 +60,33 @@ public class OfflineMessageActicity extends Activity{
         peerId = intent.getStringExtra("PeerId");
         leavemsgTip = intent.getStringExtra("leavemsgTip");
 
-        if(!"".equals(leavemsgTip)) {
+        if (!"".equals(leavemsgTip)) {
             id_et_content.setHint(leavemsgTip);
         }
 
         IMChatManager.getInstance().getLeaveMsgConfig(new OnLeaveMsgConfigListener() {
             @Override
             public void onSuccess(List<LeaveMsgField> fieldList) {
-                if(fieldList != null && fieldList.size() > 0) {
+                if (fieldList != null && fieldList.size() > 0) {
                     lmfList = fieldList;
-                    for (int i=0; i<fieldList.size(); i++) {
+                    for (int i = 0; i < fieldList.size(); i++) {
                         LeaveMsgField leaveMsgField = fieldList.get(i);
-                        if(leaveMsgField.enable) {
+                        if (leaveMsgField.enable) {
                             RelativeLayout singleView = (RelativeLayout) LayoutInflater.from(OfflineMessageActicity.this).inflate(R.layout.kf_offline_edittext, offline_ll_custom_field, false);
                             TextView erp_field_single_tv_name = (TextView) singleView.findViewById(R.id.erp_field_data_tv_name);
                             erp_field_single_tv_name.setText(leaveMsgField.name);
                             erp_field_single_tv_name.setTag(leaveMsgField.required);
                             EditText erp_field_single_et_value = (EditText) singleView.findViewById(R.id.erp_field_data_et_value);
                             erp_field_single_et_value.setTag(leaveMsgField._id);
+                            if ("姓名".equals(leaveMsgField.name)) {
+                                erp_field_single_et_value.setText(KfStartHelper.getGuestbookName());
+                            } else if ("联系方式".equals(leaveMsgField.name)) {
+                                erp_field_single_et_value.setText(KfStartHelper.getGuestbookMobile());
+                            }
                             offline_ll_custom_field.addView(singleView);
                         }
                     }
-                }else {
+                } else {
 
                 }
             }
@@ -96,7 +103,7 @@ public class OfflineMessageActicity extends Activity{
                 String content = id_et_content.getText().toString().trim();
                 int childSize = offline_ll_custom_field.getChildCount();
                 HashMap<String, String> datas = new HashMap<>();
-                for(int i=0; i<childSize; i++) {
+                for (int i = 0; i < childSize; i++) {
                     RelativeLayout childView = (RelativeLayout) offline_ll_custom_field.getChildAt(i);
                     EditText et = (EditText) childView.getChildAt(1);
                     String id = (String) et.getTag();
@@ -114,25 +121,25 @@ public class OfflineMessageActicity extends Activity{
 
                 }
 
-                if(!"".equals(content)) {
-                        loadingFragmentDialog.show(getFragmentManager(), "");
-                        IMChatManager.getInstance().submitOfflineMessage(peerId, content, datas, lmfList, new OnSubmitOfflineMessageListener() {
-                            @Override
-                            public void onSuccess() {
-                                loadingFragmentDialog.dismiss();
-                                Toast.makeText(OfflineMessageActicity.this, "提交留言成功", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
+                if (!"".equals(content)) {
+                    loadingFragmentDialog.show(getFragmentManager(), "");
+                    IMChatManager.getInstance().submitOfflineMessage(peerId, content, datas, lmfList, new OnSubmitOfflineMessageListener() {
+                        @Override
+                        public void onSuccess() {
+                            loadingFragmentDialog.dismiss();
+                            Toast.makeText(OfflineMessageActicity.this, "提交留言成功", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
 
-                            @Override
-                            public void onFailed() {
-                                loadingFragmentDialog.dismiss();
-                                Toast.makeText(OfflineMessageActicity.this, "提交留言失败", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                        });
+                        @Override
+                        public void onFailed() {
+                            loadingFragmentDialog.dismiss();
+                            Toast.makeText(OfflineMessageActicity.this, "提交留言失败", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
 
-                }else {
+                } else {
                     Toast.makeText(OfflineMessageActicity.this, "请输入内容", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -142,7 +149,7 @@ public class OfflineMessageActicity extends Activity{
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if(intent.getStringExtra("PeerId") != null) {
+        if (intent.getStringExtra("PeerId") != null) {
             peerId = intent.getStringExtra("PeerId");
         }
     }

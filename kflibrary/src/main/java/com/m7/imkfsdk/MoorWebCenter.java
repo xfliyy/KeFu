@@ -20,11 +20,12 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.m7.imkfsdk.chat.MyBaseActivity;
 import com.m7.imkfsdk.utils.FileUtils2;
 
 import java.io.File;
 
-public class MoorWebCenter extends Activity {
+public class MoorWebCenter extends MyBaseActivity {
     private TextView titlebar_name;
 	private ImageView titlebar_back;
 	private WebView mWebView;

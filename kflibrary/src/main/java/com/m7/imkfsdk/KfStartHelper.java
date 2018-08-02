@@ -37,6 +37,8 @@ public class KfStartHelper {
     private String userName;
     private String userId;
     public static String avatar;
+    public static String guestbookName;
+    public static String guestbookMobile;
 
     public void setCard(CardInfo card) {
         this.card = card;
@@ -70,6 +72,22 @@ public class KfStartHelper {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public static String getGuestbookName() {
+        return guestbookName;
+    }
+
+    public static void setGuestbookName(String guestbookName) {
+        KfStartHelper.guestbookName = guestbookName;
+    }
+
+    public static String getGuestbookMobile() {
+        return guestbookMobile;
+    }
+
+    public static void setGuestbookMobile(String guestbookMobile) {
+        KfStartHelper.guestbookMobile = guestbookMobile;
     }
 
     private void initSdkChat(String receiverAction, String accessId, String userName,

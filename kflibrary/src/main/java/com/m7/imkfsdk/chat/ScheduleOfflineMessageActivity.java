@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.m7.imkfsdk.KfStartHelper;
 import com.m7.imkfsdk.R;
 import com.moor.imkf.IMChatManager;
 import com.moor.imkf.OnLeaveMsgConfigListener;
@@ -25,7 +26,7 @@ import java.util.List;
  * Created by pangw on 2018/3/7.
  */
 
-public class ScheduleOfflineMessageActivity extends Activity {
+public class ScheduleOfflineMessageActivity extends MyBaseActivity {
     EditText id_et_content;
     Button btn_submit;
     TextView back;
@@ -60,7 +61,7 @@ public class ScheduleOfflineMessageActivity extends Activity {
         ToPeer = intent.getStringExtra("ToPeer");
         LeavemsgNodeId = intent.getStringExtra("LeavemsgNodeId");
 
-        IMChatManager.getInstance().getScheduleLeaveMsgConfig(id_et_content,LeavemsgNodeId, new OnLeaveMsgConfigListener() {
+        IMChatManager.getInstance().getScheduleLeaveMsgConfig(id_et_content, LeavemsgNodeId, new OnLeaveMsgConfigListener() {
             @Override
             public void onSuccess(List<LeaveMsgField> fieldList) {
                 if (fieldList != null && fieldList.size() > 0) {
@@ -74,6 +75,11 @@ public class ScheduleOfflineMessageActivity extends Activity {
                             erp_field_single_tv_name.setTag(leaveMsgField.required);
                             EditText erp_field_single_et_value = (EditText) singleView.findViewById(R.id.erp_field_data_et_value);
                             erp_field_single_et_value.setTag(leaveMsgField._id);
+                            if ("姓名".equals(leaveMsgField.name)) {
+                                erp_field_single_et_value.setText(KfStartHelper.getGuestbookName());
+                            } else if ("联系方式".equals(leaveMsgField.name)) {
+                                erp_field_single_et_value.setText(KfStartHelper.getGuestbookMobile());
+                            }
                             offline_ll_custom_field.addView(singleView);
                         }
                     }
