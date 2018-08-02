@@ -717,16 +717,16 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
 
         mOtherName = (TextView) this.findViewById(R.id.other_name);
 
-        /*mChatInput.setOnFocusChangeListener(new OnFocusChangeListener() {
+        mChatInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     mChatEdittextLayout
-                            .setBackgroundResource(R.drawable.kf_input_bar_bg_active);
+                            .setBackgroundResource(R.drawable.bg_input);
                 } else {
                     mChatEdittextLayout
-                            .setBackgroundResource(R.drawable.kf_input_bar_bg_normal);
+                            .setBackgroundResource(R.drawable.bg_input);
                 }
 
             }
@@ -737,7 +737,7 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
             @Override
             public void onClick(View v) {
                 mChatEdittextLayout
-                        .setBackgroundResource(R.drawable.kf_input_bar_bg_active);
+                        .setBackgroundResource(R.drawable.bg_input);
                 mChatEmojiNormal.setVisibility(View.VISIBLE);
                 mChatEmojiChecked.setVisibility(View.GONE);
 
@@ -746,7 +746,6 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                 mChatMoreContainer.setVisibility(View.GONE);
             }
         });
-*/
         // 监听文字框
         mChatInput.addTextChangedListener(new TextWatcher() {
 
@@ -803,11 +802,8 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                 getString(R.string.chat_img));
         ChatMore chatMore3 = new ChatMore(3, R.drawable.kf_icon_chat_file + "",
                 getString(R.string.chat_file));
-/*        ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
-                getString(R.string.chat_evaluate));*/
         moreList.add(chatMore2);
         moreList.add(chatMore3);
-//        moreList.add(chatMore4);
         int pageCount = (int) Math.ceil(moreList.size() / 8 + 0.1);
         for (int i = 0; i < pageCount; i++) {
             moreLists.add(getData(i));
@@ -1499,18 +1495,17 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                 String exten = intent.getStringExtra(IMChatManager.CONSTANT_EXTEN);
                 String userName = intent.getStringExtra(IMChatManager.CONSTANT_USERNAME);
                 String userIcon = intent.getStringExtra(IMChatManager.CONSTANT_USERICON);
-
                 if ("claim".equals(type)) {
-                    mOtherName.setText(NullUtil.checkNull(userName) + getString(R.string.seiveceforyou));
-                    titleName = NullUtil.checkNull(userName) + getString(R.string.seiveceforyou);
+                    titleName =  String.format(getString(R.string.seiveceforyou),NullUtil.checkNull(exten));
+                    mOtherName.setText(titleName);
                 }
                 if ("redirect".equals(type)) {
-                    mOtherName.setText(NullUtil.checkNull(userName) + getString(R.string.seiveceforyou));
-                    titleName = NullUtil.checkNull(userName) + getString(R.string.seiveceforyou);
+                    titleName =  String.format(getString(R.string.seiveceforyou),NullUtil.checkNull(exten));
+                    mOtherName.setText(titleName);
                 }
                 if ("robot".equals(type)) {
-                    mOtherName.setText(NullUtil.checkNull(userName) + getString(R.string.seiveceforyou));
-                    titleName = NullUtil.checkNull(userName) + getString(R.string.seiveceforyou);
+                    titleName =  String.format(getString(R.string.seiveceforyou),NullUtil.checkNull(exten));
+                    mOtherName.setText(titleName);
                 }
             } else if (IMChatManager.VIPASSIGNFAIL_ACTION.equals(action)) {
                 //专属座席不在线
@@ -1549,11 +1544,8 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                             getString(R.string.chat_img));
                     ChatMore chatMore3 = new ChatMore(3, R.drawable.kf_icon_chat_file + "",
                             getString(R.string.chat_file));
-/*                    ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
-                            getString(R.string.chat_evaluate));*/
                     moreList.add(chatMore2);
                     moreList.add(chatMore3);
-//                    moreList.add(chatMore4);
                     moreLists.clear();
                     int pageCount = (int) Math.ceil(moreList.size() / 8 + 0.1);
                     for (int i = 0; i < pageCount; i++) {
@@ -1604,12 +1596,8 @@ public class ChatActivity extends MyBaseActivity implements OnClickListener,
                             getString(R.string.chat_img));
                     ChatMore chatMore3 = new ChatMore(3, R.drawable.kf_icon_chat_file + "",
                             getString(R.string.chat_file));
-/*                    ChatMore chatMore4 = new ChatMore(4, R.drawable.kf_icon_chat_investigate + "",
-                            getString(R.string.chat_evaluate));*/
                     moreList.add(chatMore2);
                     moreList.add(chatMore3);
-//                    moreList.add(chatMore4);
-
                     moreLists.clear();
                     int pageCount = (int) Math.ceil(moreList.size() / 8 + 0.1);
                     for (int i = 0; i < pageCount; i++) {

@@ -6,6 +6,7 @@ import android.view.ContextMenu;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.m7.imkfsdk.KfStartHelper;
 import com.m7.imkfsdk.R;
 import com.m7.imkfsdk.chat.holder.BaseHolder;
 import com.m7.imkfsdk.chat.holder.ViewHolderTag;
@@ -101,14 +102,16 @@ public abstract class BaseChatRow implements IChatRow {
                     Glide.with(context).load(R.drawable.kf_head_default_robot).into(baseHolder.getChattingAvatar());
                 } else if (imgPath != null && !"".equals(imgPath)) {
                     //客服头像
-                    ImageLoadUtils.load(context,imgPath + "?imageView2/0/w/100/h/100",R.drawable.kf_head_default_local,R.drawable.kf_head_default_local,baseHolder.getChattingAvatar());
+                    ImageLoadUtils.load(context, imgPath + "?imageView2/0/w/100/h/100", R.drawable.kf_head_default_local, R.drawable.kf_head_default_local, baseHolder.getChattingAvatar());
                 } else {
                     baseHolder.getChattingAvatar().setImageResource(R.drawable.kf_head_default_local);
                 }
             } else {
                 //用户
                 if (!TextUtils.isEmpty(imgPath)) {
-                    ImageLoadUtils.load(context,imgPath ,R.drawable.user_head_default_local,R.drawable.user_head_default_local,baseHolder.getChattingAvatar());
+                    ImageLoadUtils.load(context, imgPath, R.drawable.user_head_default_local, R.drawable.user_head_default_local, baseHolder.getChattingAvatar());
+                } else if (!TextUtils.isEmpty(KfStartHelper.avatar)) {
+                    ImageLoadUtils.loadCircleImage(context, KfStartHelper.avatar, R.drawable.user_head_default_local, R.drawable.user_head_default_local, baseHolder.getChattingAvatar());
                 } else {
                     baseHolder.getChattingAvatar().setImageResource(R.drawable.user_head_default_local);
                 }

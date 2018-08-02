@@ -39,7 +39,7 @@
     <string name="now_robit">当前是机器人为你服务</string>
     <string name="other_writing">对方正在输入...</string>
     <string name="people_not_online">当前客服不在线</string>
-    <string name="people_now">当前是客服为你服务</string>
+    <string name="people_now">当前是人工客服为你服务</string>
     <string name="people_isleave">客服结束会话</string>
     <string name="chat_img">图库</string>
     <string name="chat_evaluate">评价</string>
@@ -53,7 +53,7 @@
     <string name="noneed">不需要</string>
     <string name="topeoplesucceed">转人工服务成功</string>
     <string name="sendfiletoobig">上传文件不能大于20MB</string>
-    <string name="seiveceforyou">为您服务</string>
+    <string name="seiveceforyou">客服 [%s]</string>
     <string name="receivepeopleaction">接收到人工干预</string>
     <string name="iknow">我知道了</string>
     <string name="thinks_01">多谢鼓励，我们再接再厉！</string>

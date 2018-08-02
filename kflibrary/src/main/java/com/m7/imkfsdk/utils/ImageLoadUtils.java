@@ -23,4 +23,9 @@ public class ImageLoadUtils {
         Glide.with(context).load(url).apply(RequestOptions.placeholderOf(placeholderId).error(errorId).centerCrop()).transition(withCrossFade()).into(imageView);
     }
 
+    public static void loadCircleImage(Context context, String url, int placeholderId, int errorId, ImageView imageView) {
+        Glide.with(context).load(url).apply(RequestOptions.placeholderOf(placeholderId).error(errorId).circleCropTransform()).into(imageView);
+    }
+
+
 }

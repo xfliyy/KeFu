@@ -36,6 +36,7 @@ public class KfStartHelper {
     private String accessId;
     private String userName;
     private String userId;
+    public static String avatar;
 
     public void setCard(CardInfo card) {
         this.card = card;
@@ -45,6 +46,7 @@ public class KfStartHelper {
         mActivity = activity;
         context = activity.getApplicationContext();
         loadingDialog = new LoadingFragmentDialog();
+        loadingDialog.setMsg("客服程序正在启动...");
         initFaceUtils();
     }
 
@@ -66,6 +68,10 @@ public class KfStartHelper {
         initSdkChat("com.m7.imkf.KEFU_NEW_MSG", accessId, userName, userId);
     }
 
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     private void initSdkChat(String receiverAction, String accessId, String userName,
                              String userId) {
         this.receiverAction = receiverAction;
@@ -84,6 +90,7 @@ public class KfStartHelper {
             startKFService();
         }
     }
+
 
     private void getIsGoSchedule() {
         IMChatManager.getInstance().getWebchatScheduleConfig(new GetGlobleConfigListen() {
